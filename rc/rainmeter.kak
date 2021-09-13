@@ -12,16 +12,16 @@ hook -group rainmeter-highlight global WinSetOption filetype=rainmeter %{
     hook -once -always window WinSetOption filetype=.* %{ remove-highlighter window/rainmeter }
 }
 
-
 provide-module rainmeter %{
     add-highlighter shared/rainmeter regions
     add-highlighter shared/rainmeter/code default-region group
     add-highlighter shared/rainmeter/comment region ";" $ fill comment
     add-highlighter shared/rainmeter/string region '"' '(?<!\\)(?:\\\\)*"' fill string
     add-highlighter shared/rainmeter/string_single region "'" "(?<!\\)(?:\\\\)*'" fill string
+    add-highlighter shared/rainmeter/variable_nested_section region "\[&" "(?<!\\)(?:\\\\)*\]" fill module
+    add-highlighter shared/rainmeter/variable_nested region "\[(\\|#|\$)" "(?<!\\)(?:\\\\)*\]" fill variable
     add-highlighter shared/rainmeter/variable_classic region "#" "(?<!\\)(?:\\\\)*#" fill variable
     add-highlighter shared/rainmeter/variable_mouse region "\$" "(?<!\\)(?:\\\\)*\$" fill variable
-    add-highlighter shared/rainmeter/variable_nested region "\[(\\|&|#|\$)" "(?<!\\)(?:\\\\)*\]" fill variable
     add-highlighter shared/rainmeter/variable_section region "\[\w" "(?<!\\)(?:\\\\)*\]" fill module
 
     # TODO: Variables within strings
