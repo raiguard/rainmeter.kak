@@ -16,16 +16,15 @@ provide-module rainmeter %{
     add-highlighter shared/rainmeter regions
     add-highlighter shared/rainmeter/code default-region group
     add-highlighter shared/rainmeter/comment region ";" $ fill comment
-    add-highlighter shared/rainmeter/string region '"' '"' fill string
-    add-highlighter shared/rainmeter/string_single region "'" "'" fill string
-    add-highlighter shared/rainmeter/variable_nested_section region "\[&" "\]" fill module
-    add-highlighter shared/rainmeter/variable_nested region "\[(\\|#|\$)" "\]" fill variable
-    add-highlighter shared/rainmeter/variable_classic region "#" "#" fill variable
-    add-highlighter shared/rainmeter/variable_mouse region "\$" "\$" fill variable
-    add-highlighter shared/rainmeter/variable_section region "\[\w" "\]" fill module
+    add-highlighter shared/rainmeter/string region '"' '("|$)' fill string
+    add-highlighter shared/rainmeter/string_single region "'" "('|$)" fill string
+    add-highlighter shared/rainmeter/variable_nested_section region -recurse "\[" "\[&" "\]" fill module
+    add-highlighter shared/rainmeter/variable_nested region -recurse "\[" "\[(\\|#|\$)" "\]" fill variable
+    add-highlighter shared/rainmeter/variable_classic region "#" "(#|$)" fill variable
+    add-highlighter shared/rainmeter/variable_mouse region "\$" "(\$|$)" fill variable
+    add-highlighter shared/rainmeter/variable_section region -recurse "\[" "\[\w" "\]" fill module
 
     # TODO: Variables within strings
-    # TODO: nested and section highlighters end too early
 
     # SOURCE: https://github.com/poiru/rainlexer/blob/5600b054e0849c91e83ba816e229645ca01d0204/Config/Default/RainLexer.xml
 
